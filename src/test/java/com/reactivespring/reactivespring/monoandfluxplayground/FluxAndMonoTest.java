@@ -2,6 +2,7 @@ package com.reactivespring.reactivespring.monoandfluxplayground;
 
 import org.junit.jupiter.api.Test;
 import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 import reactor.test.StepVerifier;
 
 public class FluxAndMonoTest {
@@ -71,6 +72,16 @@ public class FluxAndMonoTest {
                 .expectError(RuntimeException.class)
                 .verify();
 
+    }
+
+    @Test
+    public void shouldVerifyMono(){
+
+        Mono<String> monoString = Mono.just("Spring").log();
+
+        StepVerifier.create(monoString)
+                .expectNext("Spring")
+                .verifyComplete();
     }
 
 }
