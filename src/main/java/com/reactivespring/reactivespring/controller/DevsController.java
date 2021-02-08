@@ -43,7 +43,7 @@ public class DevsController {
     public Flux<Tuple2<Long, Devs>> event() {
 
        log.info("Starting get Devs by WebFlux" + LocalDateTime.now());
-       Flux<Long> interval = Flux.interval(Duration.ofSeconds(10));
+       Flux<Long> interval = Flux.interval(Duration.ofSeconds(5));
        Flux<Devs> devsFlux = devsService.findAll();
        return Flux.zip(interval, devsFlux).log();
     }
